@@ -1,0 +1,47 @@
+﻿<Window x:Class="IECSC.Raise.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IECSC.Raise"
+        mc:Ignorable="d"
+        Title="提升机" Height="450" Width="800">
+    <DockPanel Width="Auto" Height="Auto" LastChildFill="True">
+        <!--底部状态栏-->
+        <StackPanel Width="Auto" Height="25" Background="AliceBlue" Orientation="Horizontal" DockPanel.Dock="Bottom">
+            <Label Width="Auto" Height="Auto" Content="数据库连接状态:" FontFamily="微软雅黑" FontSize="12"/>
+            <Rectangle x:Name="recDbConnStatus" Width="25" Height="15" Fill="Red"/>
+            <Label Width="Auto" Height="Auto" Content="设备连接状态:" FontFamily="微软雅黑" FontSize="12"/>
+            <Rectangle x:Name="recPlcConnStatus" Width="25" Height="15" Fill="Red"/>
+            <Label Content="  登陆时间:" FontFamily="微软雅黑" FontSize="12"/>
+            <Label x:Name="lbTime" Content="2018-11-11 11:59:59" FontFamily="微软雅黑" FontSize="12"/>
+        </StackPanel>
+        <GroupBox x:Name="gbExecLog" Header="运行日志" Width="380" Height="Auto" Margin="3" DockPanel.Dock="Right">
+            <TextBox x:Name="txtLocRecord" Width="Auto" Height="Auto" TextWrapping="Wrap" Padding="5" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" Grid.RowSpan="2" />
+        </GroupBox>
+        <Grid Width="Auto" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="站台状态监控" Grid.Column="0" Grid.Row="0" Width="Auto" Height="Auto" Margin="3">
+                <ScrollViewer Name="scrollViewer1" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="GridLocList" Width="Auto" Height="Auto"/>
+                </ScrollViewer>
+            </GroupBox>
+            <GroupBox x:Name="gbTaskCmd" Header="最近下发信息" Grid.Column="0" Grid.Row="1" Width="Auto" Height="Auto" Margin="3">
+                <DataGrid x:Name="dgv" Margin="3" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectionMode="Single"
+                      HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding LocPlcNo,UpdateSourceTrigger=PropertyChanged}"        IsReadOnly="True" Header="站台号"       Width="80"/>
+                        <DataGridTextColumn Binding="{Binding Area,UpdateSourceTrigger=PropertyChanged}"            IsReadOnly="True" Header="区域"         Width="80"/>
+                        <DataGridTextColumn Binding="{Binding ProductNo,UpdateSourceTrigger=PropertyChanged}"       IsReadOnly="True" Header="产品编号"     Width="300"/>
+                        <DataGridTextColumn Binding="{Binding StandardWeight,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" Header="标准重量"     Width="80"/>
+                        <DataGridTextColumn Binding="{Binding AllowErrRange,UpdateSourceTrigger=PropertyChanged}"   IsReadOnly="True" Header="允许误差"     Width="100"/>
+                        <DataGridTextColumn Binding="{Binding PalletType,UpdateSourceTrigger=PropertyChanged}"      IsReadOnly="True" Header="托盘类型"     Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -17,6 +17,8 @@ namespace IECSC.TRANS
         /// 站台类型编号
         /// </summary>
         public string LocTypeNo { get; set; }
+
+
         /// <summary>
         /// 站台类型描述
         /// </summary>

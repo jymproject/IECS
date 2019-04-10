@@ -414,12 +414,12 @@ namespace IECSC.Sending
             try
             {
                 var sb = new StringBuilder();
-                sb.Append("UPDATE [dbo].[PEM_Sending_LOC_STATUS]");
+                sb.Append("UPDATE [dbo].[PEM_SENDING_LOC_STATUS]");
                 sb.Append(" SET");
                 sb.Append("[Update_Date] = getdate()");
                 sb.Append(" ,[RealWeight] = @RealWeight");
-                sb.Append(" ,[PalletNo] = @PalletNo");
-
+                sb.Append(" ,[PALLET_NO] = @PalletNo");
+                sb.Append(" ,[TASK_NO] = @taskNo");
                 sb.Append(" ,[Status_Auto] = @StatusAuto");
                 sb.Append(" ,[Status_Fault] = @StatusFault");
                 sb.Append(" ,[Status_Load] = @StatusLoad");
@@ -430,6 +430,7 @@ namespace IECSC.Sending
                 var param = new DynamicParameters();
                 param.Add("RealWeight", loc.plcStatus.RealWeight);
                 param.Add("PalletNo", loc.plcStatus.PalletNo);
+                param.Add("taskNo", loc.plcStatus.TaskNo);
 
                 param.Add("StatusAuto", loc.plcStatus.StatusAuto);
                 param.Add("StatusFault", loc.plcStatus.StatusFault);

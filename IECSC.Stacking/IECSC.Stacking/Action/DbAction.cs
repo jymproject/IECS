@@ -655,12 +655,12 @@ namespace IECSC.Stacking
             try
             {
                 var sb = new StringBuilder();
-                sb.Append("UPDATE [dbo].[PEM_Stacking_LOC_STATUS]");
+                sb.Append("UPDATE [dbo].[PEM_STACKING_LOC_STATUS]");
                 sb.Append(" SET");
                 sb.Append("[Update_Date] = getdate()");
                 sb.Append(" ,[PalletQty] = @PalletQty");
-                sb.Append(" ,[PalletNo] = @PalletNo");
-
+                sb.Append(" ,[PALLET_NO] = @PalletNo");
+                sb.Append(" ,[TASK_NO] = @taskNo");
                 sb.Append(" ,[Status_Auto] = @StatusAuto");
                 sb.Append(" ,[Status_Fault] = @StatusFault");
                 sb.Append(" ,[Status_Load] = @StatusLoad");
@@ -671,6 +671,7 @@ namespace IECSC.Stacking
                 var param = new DynamicParameters();
                 param.Add("PalletQty", loc.plcStatus.PalletQty);
                 param.Add("PalletNo", loc.plcStatus.PalletNo);
+                param.Add("taskNo", loc.plcStatus.TaskNo);
 
                 param.Add("StatusAuto", loc.plcStatus.StatusAuto);
                 param.Add("StatusFault", loc.plcStatus.StatusFault);
